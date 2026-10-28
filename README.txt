@@ -3,7 +3,7 @@ OPÉRATION ANNIVERSAIRE — LOHAN
 
 Contenu
 - index.html : mini-jeu responsive, HTML/CSS/JavaScript
-- assets/GTA_6_Release.jpg : image fournie dans la conversation, copiée dans les ressources du jeu
+- GTA_6_Release.jpg : image fournie dans la conversation, copiée dans les ressources du jeu
 
 Tester sur ordinateur
 1. Décompressez le ZIP.

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07111e">
+<meta name="description" content="Une mission confidentielle attend l'agent Lohan.">
+<title>Opération Anniversaire</title>
+<style>
+:root{--bg:#06101c;--panel:rgba(11,25,42,.88);--cyan:#64f5ef;--pink:#ff4fb8;--gold:#ffd879;--text:#f4f7ff;--muted:#a9bad0;--green:#8dffb0}
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--bg)}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:
+radial-gradient(ellipse at 50% -15%,rgba(45,153,197,.28),transparent 48%),
+linear-gradient(180deg,rgba(3,10,19,.25),rgba(3,10,19,.92)),
+linear-gradient(120deg,#09233a 0%,#15142e 50%,#25102b 100%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(100,245,239,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(100,245,239,.14) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
+.city{position:fixed;inset:auto 0 0;height:33vh;min-height:180px;z-index:-1;opacity:.55;pointer-events:none;overflow:hidden}
+.building{position:absolute;bottom:0;width:8%;background:linear-gradient(180deg,#153b59,#091322);border:1px solid rgba(100,245,239,.25);box-shadow:inset 0 0 18px rgba(100,245,239,.08)}
+.building:after{content:"";position:absolute;inset:8px;background:repeating-linear-gradient(0deg,transparent 0 12px,rgba(100,245,239,.22) 13px 14px),repeating-linear-gradient(90deg,transparent 0 12px,rgba(255,79,184,.17) 13px 14px)}
+.palm{position:absolute;bottom:2%;font-size:clamp(42px,9vw,100px);filter:saturate(.7);opacity:.55}
+main{width:min(100% - 28px,760px);margin:0 auto;padding:20px 0 38px;min-height:100vh;display:flex;flex-direction:column}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;color:var(--muted);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.brand{display:flex;align-items:center;gap:8px;color:var(--cyan);font-weight:800}
+.dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35;transform:scale(.8)}}
+.progress-wrap{height:4px;background:#1c2b3b;border-radius:99px;overflow:hidden;margin-bottom:24px}
+.progress{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));transition:width .5s ease}
+.screen{display:none;animation:enter .45s ease both;flex:1}
+.screen.active{display:flex;flex-direction:column}
+@keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{color:var(--cyan);font-size:.75rem;letter-spacing:.2em;font-weight:800;text-transform:uppercase;margin-bottom:12px}
+h1,h2,p{margin-top:0}
+h1{font-size:clamp(2.5rem,10vw,5.4rem);line-height:.91;letter-spacing:-.065em;margin-bottom:18px;text-transform:uppercase}
+h1 span{color:var(--cyan);text-shadow:0 0 28px rgba(100,245,239,.22)}
+h2{font-size:clamp(1.7rem,6vw,2.7rem);line-height:1.02;letter-spacing:-.04em;margin-bottom:14px}
+.lead{color:#c6d3e2;line-height:1.65;font-size:1rem;max-width:590px}
+.panel{background:var(--panel);border:1px solid rgba(100,245,239,.25);border-radius:20px;padding:clamp(18px,5vw,30px);box-shadow:0 18px 60px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(12px)}
+.hero-art{height:150px;border-radius:16px;position:relative;overflow:hidden;margin:6px 0 24px;background:linear-gradient(115deg,rgba(255,79,184,.23),rgba(100,245,239,.13)),linear-gradient(180deg,#1a4a66,#15142e)}
+.hero-art:before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 40%,rgba(0,0,0,.55)),repeating-linear-gradient(90deg,transparent 0 38px,rgba(255,255,255,.07) 39px 40px)}
+.sun{position:absolute;width:84px;height:84px;right:16%;top:17px;border-radius:50%;background:linear-gradient(#ff9e9a,#ff4fb8);box-shadow:0 0 45px rgba(255,79,184,.35)}
+.skyline{position:absolute;bottom:0;left:0;right:0;height:75%;display:flex;align-items:end;gap:5px;padding:0 10px}
+.skyline i{display:block;flex:1;background:linear-gradient(#24617c,#081321);border:1px solid rgba(100,245,239,.25);position:relative}
+.skyline i:after{content:"";position:absolute;inset:7px 3px;background:repeating-linear-gradient(0deg,transparent 0 9px,rgba(100,245,239,.45) 10px 11px)}
+.skyline i:nth-child(1){height:44%}.skyline i:nth-child(2){height:75%}.skyline i:nth-child(3){height:57%}.skyline i:nth-child(4){height:91%}.skyline i:nth-child(5){height:62%}.skyline i:nth-child(6){height:82%}.skyline i:nth-child(7){height:48%}.skyline i:nth-child(8){height:69%}
+.btn{appearance:none;border:0;border-radius:12px;padding:16px 18px;min-height:54px;width:100%;background:linear-gradient(100deg,var(--cyan),#85fff0);color:#06111c;font-weight:900;font-size:.94rem;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 24px rgba(100,245,239,.15);transition:transform .15s,filter .15s}
+.btn:active{transform:scale(.98)}.btn:hover{filter:brightness(1.08)}
+.btn.secondary{background:rgba(16,35,54,.7);color:var(--text);border:1px solid rgba(100,245,239,.3);box-shadow:none}
+.btn.pink{background:linear-gradient(100deg,#ff66be,#ffb0dc);color:#260b24}
+.stack{display:grid;gap:12px;margin-top:18px}
+.mission-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
+.mission{padding:18px;border-radius:16px;border:1px solid rgba(140,171,203,.26);background:rgba(8,21,36,.8);text-align:left;color:var(--text);cursor:pointer;transition:border-color .2s,transform .2s;min-height:130px}
+.mission:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.mission .num{color:var(--pink);font-weight:900;font-size:.75rem;letter-spacing:.14em}
+.mission h3{margin:8px 0;font-size:1.15rem}
+.mission p{color:var(--muted);font-size:.9rem;line-height:1.45;margin:0}
+.tag{display:inline-block;color:var(--cyan);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+.choices{display:grid;gap:10px;margin-top:18px}
+.choice{width:100%;text-align:left;background:rgba(10,26,43,.88);border:1px solid rgba(140,171,203,.3);border-radius:12px;color:var(--text);padding:15px;min-height:58px;font-size:.96rem;cursor:pointer}
+.choice:hover{border-color:var(--cyan)}
+.choice strong{color:var(--cyan);margin-right:10px}
+.feedback{min-height:30px;margin-top:14px;font-weight:700;line-height:1.45}
+.feedback.bad{color:#ff9ba7}.feedback.good{color:var(--green)}
+.mini-map{height:150px;border-radius:14px;margin:15px 0;background:linear-gradient(135deg,#102e42,#0b1727);position:relative;overflow:hidden;border:1px solid rgba(100,245,239,.2)}
+.road{position:absolute;background:#263e51;border:2px solid #406077;transform:rotate(-18deg);height:20px;width:130%;left:-10%;top:45%}
+.road.r2{transform:rotate(35deg);top:30%;left:-5%;width:120%;height:15px}
+.road.r3{transform:rotate(80deg);top:15%;left:44%;height:20px;width:100%}
+.pin{position:absolute;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;border:2px solid var(--cyan);background:#092131;color:var(--cyan);font-weight:900;box-shadow:0 0 18px rgba(100,245,239,.25)}
+.pin.a{left:16%;top:25%}.pin.b{left:53%;top:55%}.pin.c{right:12%;top:22%}
+.code-row{display:flex;gap:9px;margin:18px 0}
+.code-row input{width:100%;min-width:0;text-align:center;background:#071521;border:1px solid rgba(100,245,239,.4);border-radius:12px;color:white;font-size:1.5rem;font-weight:800;padding:12px 6px}
+.note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.hidden{display:none!important}
+.final-screen{text-align:center;justify-content:center;align-items:stretch}
+.final-screen h1{font-size:clamp(2.3rem,9vw,4.5rem)}
+.gift-image{display:block;width:100%;height:auto;max-height:48vh;object-fit:contain;border-radius:14px;border:1px solid rgba(255,255,255,.18);box-shadow:0 0 45px rgba(255,79,184,.22);margin:18px auto;background:#07111e}
+.gift-line{font-size:clamp(1.05rem,4vw,1.5rem);line-height:1.35;font-weight:800;margin:10px 0}
+.gift-title{font-size:clamp(1.7rem,6vw,3rem);font-weight:1000;line-height:1.02;color:var(--gold);text-shadow:0 0 22px rgba(255,216,121,.2);margin:12px 0}
+.love{font-size:clamp(1.05rem,4vw,1.35rem);font-weight:900;color:#fff;margin:22px 0 8px}
+.confetti{position:fixed;top:-12px;width:8px;height:13px;z-index:10;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(780deg);opacity:.9}}
+.count{font-size:clamp(4rem,18vw,8rem);font-weight:1000;color:var(--cyan);text-shadow:0 0 35px rgba(100,245,239,.35);margin:8px 0}
+.small-footer{margin-top:auto;padding-top:22px;text-align:center;color:#758ba2;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+@media(min-width:620px){.mission-grid{grid-template-columns:repeat(3,1fr)}.mission{min-height:190px}.hero-art{height:190px}.stack.two{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="city" aria-hidden="true">
+  <div class="building" style="left:2%;height:43%"></div><div class="building" style="left:12%;height:67%;width:10%"></div>
+  <div class="building" style="left:25%;height:35%"></div><div class="building" style="left:36%;height:75%;width:9%"></div>
+  <div class="building" style="left:49%;height:49%"></div><div class="building" style="left:61%;height:86%;width:11%"></div>
+  <div class="building" style="left:76%;height:58%"></div><div class="building" style="left:88%;height:72%"></div>
+  <div class="palm" style="left:1%">🌴</div><div class="palm" style="right:2%">🌴</div>
+</div>
+<main>
+  <div class="topbar"><div class="brand"><span class="dot"></span> CELLULE DES OPÉRATIONS</div><div>ACCÈS // CLASSIFIÉ</div></div>
+  <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+
+  <section class="screen active" id="welcome">
+    <div class="eyebrow">Transmission prioritaire · Dossier 014</div>
+    <h1>OPÉRATION<br><span>ANNIVERSAIRE</span></h1>
+    <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="skyline"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="panel">
+      <div class="eyebrow">Connexion sécurisée établie</div>
+      <h2>Agent Lohan,<br>votre profil a été validé.</h2>
+      <p class="lead">Une mission confidentielle vient d'être confiée à notre meilleur agent. Trois opérations sont disponibles. Une récompense attend l'agent qui ira jusqu'au bout.</p>
+      <button class="btn" onclick="showScreen('missions',1)">Accepter la mission →</button>
+    </div>
+  </section>
+
+  <section class="screen" id="missions">
+    <div class="eyebrow">Étape 01 / Sélection</div>
+    <h2>Choisissez votre opération</h2>
+    <p class="lead">Chaque opération mène au même objectif. Choisissez votre terrain, agent.</p>
+    <div class="mission-grid">
+      <button class="mission" onclick="chooseMission('race')"><div class="num">MISSION A · VÉHICULE</div><h3>🏎️ Course urbaine</h3><p>Interceptez une voiture mystérieuse avant qu'elle ne quitte la ville.</p></button>
+      <button class="mission" onclick="chooseMission('heli')"><div class="num">MISSION B · EXTRACTION</div><h3>🚁 Hélicoptère</h3><p>Récupérez un colis ultra-confidentiel sur un toit.</p></button>
+      <button class="mission" onclick="chooseMission('safe')"><div class="num">MISSION C · INFILTRATION</div><h3>🔐 Coffre secret</h3><p>Un coffre est dissimulé dans un bâtiment sécurisé.</p></button>
+    </div>
+  </section>
+
+  <section class="screen" id="challenge">
+    <div class="eyebrow" id="challengeEyebrow">Étape 02 / Terrain</div>
+    <h2 id="challengeTitle">Défi opérationnel</h2>
+    <p class="lead" id="challengeIntro"></p>
+    <div class="panel" id="challengePanel"></div>
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <div class="stack"><button class="btn hidden" id="continueBtn" onclick="showScreen('debrief',3)">Accéder au débrief →</button><button class="btn secondary" onclick="showScreen('missions',1)">Changer d'opération</button></div>
+  </section>
+
+  <section class="screen" id="debrief">
+    <div class="eyebrow">Rapport de mission · Validé</div>
+    <h2>Objectif atteint.</h2>
+    <div class="panel">
+      <div style="font-size:3rem;margin-bottom:12px">✓</div>
+      <div class="eyebrow" style="color:var(--green)">Mission accomplie, Agent Lohan.</div>
+      <p class="lead">Votre sang-froid et votre sens de l'observation ont été confirmés. Le système vient de déverrouiller un dernier dossier…</p>
+      <div class="progress-wrap"><div class="progress" style="width:100%"></div></div>
+      <p class="note">DOSSIER FINAL · AUTORISATION ACCORDÉE</p>
+      <button class="btn pink" onclick="startReveal()">Ouvrir le dernier dossier →</button>
+    </div>
+  </section>
+
+  <section class="screen final-screen" id="reveal">
+    <div class="eyebrow">Décryptage final · Autorisation maximale</div>
+    <h2>AGENT LOHAN,<br>VOUS AVEZ ACCOMPLI<br>TOUTES VOS MISSIONS.</h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto">Un dernier dossier reste à décrypter…</p>
+    <div class="count" id="countdown">3</div>
+    <p class="note">PRÉPARATION DE LA RÉCOMPENSE…</p>
+  </section>
+
+  <section class="screen final-screen" id="gift">
+    <div class="eyebrow">Dossier déclassifié · Anniversaire</div>
+    <h1>BRAVO <span>LOHAN !</span></h1>
+    <div class="gift-line">MISSION ACCOMPLIE !</div>
+    <div class="gift-line">TON CADEAU D'ANNIVERSAIRE EST…</div>
+    <img class="gift-image" src="assets/GTA_6_Release.jpg" alt="Illustration de Grand Theft Auto VI, cadeau d'anniversaire de Lohan" onerror="this.alt='Image du cadeau indisponible';document.getElementById('imageWarning').classList.remove('hidden')">
+    <div id="imageWarning" class="feedback bad hidden">L'image du cadeau n'a pas pu être chargée. Vérifiez que le dossier assets accompagne bien index.html lors de la publication.</div>
+    <div class="gift-title">GRAND THEFT AUTO VI<br>— GTA 6 !</div>
+    <p class="gift-line">TU AS RÉUSSI TOUTES LES MISSIONS, AGENT LOHAN !</p>
+    <p class="gift-line">TU AS GAGNÉ GTA 6 POUR TON ANNIVERSAIRE !</p>
+    <p class="gift-line">BIEN JOUÉ, CHAMPION !</p>
+    <p class="love">AVEC TOUT NOTRE AMOUR, PAPA ET MAMAN ❤️</p>
+    <button class="btn" onclick="celebrate()">Encore une célébration ! 🎉</button>
+    <p class="note" style="margin-top:14px">FIN DE TRANSMISSION · BON ANNIVERSAIRE LOHAN</p>
+  </section>
+
+  <div class="small-footer">Canal chiffré · Opérations spéciales · Bamako</div>
+</main>
+<script>
+const progress = document.getElementById('progress');
+const screens = ['welcome','missions','challenge','debrief','reveal','gift'];
+function showScreen(id,step){
+  screens.forEach(s=>document.getElementById(s).classList.toggle('active',s===id));
+  if(step!==undefined) progress.style.width = ({welcome:0,missions:20,challenge:48,debrief:72,reveal:90,gift:100}[id]||0)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+let selected = '';
+function chooseMission(type){
+  selected=type;
+  const panel=document.getElementById('challengePanel');
+  const title=document.getElementById('challengeTitle');
+  const intro=document.getElementById('challengeIntro');
+  const feedback=document.getElementById('feedback');
+  feedback.textContent=''; feedback.className='feedback';
+  document.getElementById('continueBtn').classList.add('hidden');
+  if(type==='race'){
+    title.textContent='Interception : choisir l’itinéraire';
+    intro.textContent='La cible approche du pont. Les caméras ont repéré trois itinéraires. Un seul permet de l’intercepter sans perdre de temps.';
+    panel.innerHTML=`<div class="tag">Carte tactique · Secteur portuaire</div><div class="mini-map"><div class="road"></div><div class="road r2"></div><div class="road r3"></div><div class="pin a">A</div><div class="pin b">B</div><div class="pin c">C</div></div><p class="lead">Indice : la cible est à l’est du port. L’accès nord est bloqué, et le tunnel sud est fermé pour travaux. Quelle route reste praticable ?</p><div class="choices"><button class="choice" onclick="answer(false,'L’itinéraire nord est bloqué par un barrage. Recalculez votre trajet.')"><strong>A</strong> Boulevard Nord</button><button class="choice" onclick="answer(true,'Bonne lecture de la carte : le pont Est est libre !')"><strong>B</strong> Pont Est</button><button class="choice" onclick="answer(false,'Le tunnel sud est fermé pour travaux. Essayez une autre route.')"><strong>C</strong> Tunnel Sud</button></div>`;
+  }else if(type==='heli'){
+    title.textContent='Extraction : identifier le toit';
+    intro.textContent='Le pilote attend vos coordonnées. Analysez les trois zones avant de lui transmettre la bonne.';
+    panel.innerHTML=`<div class="tag">Reconnaissance aérienne · Zone 7</div><div class="mini-map"><div class="road"></div><div class="road r2"></div><div class="road r3"></div><div class="pin a">A</div><div class="pin b">B</div><div class="pin c">C</div></div><p class="lead">Indice : le toit d’extraction doit être haut, dégagé et situé près de la côte. Le bâtiment A est bas, le B est entouré d’antennes, le C est haut et libre.</p><div class="choices"><button class="choice" onclick="answer(false,'Le bâtiment A est trop bas pour une extraction sûre. Réessayez.')"><strong>A</strong> Bâtiment A · 4 étages</button><button class="choice" onclick="answer(false,'Trop d’antennes autour du toit B. Le pilote ne peut pas s’y poser.')"><strong>B</strong> Bâtiment B · Antennes</button><button class="choice" onclick="answer(true,'Coordonnées confirmées. Le toit C est dégagé : extraction autorisée !')"><strong>C</strong> Tour C · Toit dégagé</button></div>`;
+  }else{
+    title.textContent='Infiltration : déverrouiller le coffre';
+    intro.textContent='Le clavier réclame un code à trois chiffres. Résolvez les indices pour ouvrir le coffre.';
+    panel.innerHTML=`<div class="tag">Terminal de sécurité · Niveau 3</div><p class="lead">Le code comporte trois chiffres différents.</p><ul class="lead"><li>Le premier chiffre est le double de 2.</li><li>Le deuxième chiffre est 3 de moins que le premier.</li><li>Le dernier chiffre est la somme des deux premiers, moins 3.</li></ul><div class="code-row"><input id="d1" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Premier chiffre"><input id="d2" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Deuxième chiffre"><input id="d3" inputmode="numeric" maxlength="1" pattern="[0-9]" aria-label="Troisième chiffre"></div><button class="btn" onclick="checkCode()">Valider le code</button><p class="note" style="margin-top:12px">Astuce : calculez chaque chiffre dans l’ordre, sans vous précipiter.</p>`;
+    ['d1','d2','d3'].forEach((id,i)=>document.getElementById(id)?.addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9]/g,'').slice(0,1);if(e.target.value&&i<2)document.getElementById(['d2','d3'][i]).focus()}));
+  }
+  showScreen('challenge',2);
+}
+function answer(ok,message){
+  const f=document.getElementById('feedback');
+  f.textContent=message;f.className='feedback '+(ok?'good':'bad');
+  if(ok){document.getElementById('continueBtn').classList.remove('hidden');progress.style.width='66%';}
+}
+function checkCode(){
+  const code=['d1','d2','d3'].map(id=>document.getElementById(id).value).join('');
+  answer(code==='431','');
+  const f=document.getElementById('feedback');
+  if(code==='412'){f.textContent='Code accepté. Coffre déverrouillé : données récupérées !';f.className='feedback good';}
+  else{f.textContent='Code incorrect. Relisez les trois indices et réessayez.';f.className='feedback bad';}
+}
+function startReveal(){
+  showScreen('reveal',4);
+  let n=3;const el=document.getElementById('countdown');el.textContent=n;
+  const tick=()=>{n--;if(n>0){el.textContent=n;setTimeout(tick,900)}else{el.textContent='';setTimeout(()=>{showScreen('gift',5);celebrate()},450)}};
+  setTimeout(tick,900);
+}
+function celebrate(){
+  const colors=['#64f5ef','#ff4fb8','#ffd879','#8dffb0','#ffffff'];
+  for(let i=0;i<85;i++){
+    const c=document.createElement('i');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.setProperty('--drift',(Math.random()*220-110)+'px');c.style.animationDuration=(2.2+Math.random()*2.5)+'s';c.style.animationDelay=(Math.random()*.8)+'s';c.style.borderRadius=Math.random()>.5?'50%':'2px';document.body.appendChild(c);setTimeout(()=>c.remove(),6000);
+  }
+}
+</script>
+</body>
+</html>
